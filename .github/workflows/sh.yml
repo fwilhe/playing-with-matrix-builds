@@ -8,12 +8,13 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    name: Run ${{ matrix.foo.y }}
     strategy:
       fail-fast: false
       matrix:
-        foo: [{"x":"1"}, {"x":"1"}]
+        foo: [{"x":"1", "y": "alpha"}, {"x":"2", "y": "beta"}]
     steps:
     - uses: actions/checkout@v2
     - name: Run a multi-line script
       run: |
-        echo ${{ matrix.foo.x }}
+        echo ${{ matrix.foo.x }}: ${{ matrix.foo.y }}
