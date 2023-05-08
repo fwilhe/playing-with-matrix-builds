@@ -11,12 +11,9 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        foo:
-          - a
-          - b
-          - c
+        foo: [{"x":"1"}, {"x":"1"}]
     steps:
     - uses: actions/checkout@v2
     - name: Run a multi-line script
       run: |
-        echo ${{ matrix.foo }}
+        echo ${{ matrix.foo.x }}
